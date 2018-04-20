@@ -1,8 +1,3 @@
+import { mist } from './mist-api.js';
 
-import { NativeModules } from 'react-native';
-
-const { RNMistLibrary } = NativeModules;
-
-console.log('RNMistLibrary loaded');
-
-export default RNMistLibrary;
+export default mist;

@@ -1,3 +1,11 @@
+import bson from './bson.js';
+import { Buffer } from 'buffer'
+import { DeviceEventEmitter } from 'react-native';
+import { NativeModules } from 'react-native';
+const { RNMistLibrary } = NativeModules;
+
+var BSON = bson().BSON;
+
 var base64encode;
 var base64decode;
 
@@ -68,21 +76,15 @@ var base64decode;
   };
 })();
 
-import bson from './bson.js';
-import ToastExample from './mistmodule.js';
-import { DeviceEventEmitter } from 'react-native';
-
-var BSON = bson().BSON;
-
 function receive(data) {
-   // console.log("receive:" , data);
+    console.log("receive:" , data);
     rpc.response(BSON.deserialize(data));
 }
 
 function send(data) {
-  console.log("sending data", data);
+  console.log("sending data", data, RNMistLibrary);
   var msg = BSON.serialize(data);
-  ToastExample.send(base64encode(msg));
+  RNMistLibrary.send(base64encode(msg));
 }
 
 var api = {
@@ -172,7 +174,6 @@ var rpc = {
         });
     }
 };
-import { Buffer } from 'buffer'
 
 DeviceEventEmitter.addListener('mist-rpc', (e) => {
   console.log('mist-rpc in DeviceEventEmittier listener', typeof e, base64decode(e) instanceof Uint8Array );

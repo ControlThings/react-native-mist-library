@@ -33,5 +33,7 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
+    implementation project(':Wish')
+    implementation project(':MistApi')
 }
   
