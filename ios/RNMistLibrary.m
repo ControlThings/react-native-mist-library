@@ -5,6 +5,7 @@
 #import "MistPort.h"
 #import "Sandbox.h"
 
+Sandbox *sandbox;
 
 @implementation RNMistLibrary
 
@@ -13,6 +14,14 @@
     
     [MistPort launchWish];
     [MistPort launchMistApi];
+    
+    sandbox = [[Sandbox alloc] initWithCallback:^(NSData *responseData) {
+        NSString *base64Encoded = [responseData base64EncodedStringWithOptions:0];
+        NSLog(@"mist-rpc sandbox callback with response len=%lu", responseData.length);
+        //
+        [self sendEventWithName:@"mist-rpc" body:base64Encoded];
+    }];
+    
     
     return self;
 }
@@ -34,13 +43,7 @@ RCT_EXPORT_METHOD(send:(NSString *)base64Data)
     NSData *unmarshalled = [[NSData alloc] initWithBase64EncodedString:base64Data options:0];
     RCTLogInfo(@"mist-rpc send, with data len=%lu", unmarshalled.length);
 
-    Sandbox * sandbox = [[Sandbox alloc] initWithCallback:^(NSData *responseData) {
-        NSString *base64Encoded = [responseData base64EncodedStringWithOptions:0];
-        NSLog(@"mist-rpc sandbox callback with response len=%lu", responseData.length);
-        //
-        [self sendEventWithName:@"mist-rpc" body:base64Encoded];
-    }];
-    
+
     [sandbox requestWithData:unmarshalled];
     
 }
