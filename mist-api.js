@@ -1,6 +1,6 @@
 import bson from './bson.js';
 import { Buffer } from 'buffer'
-import { DeviceEventEmitter } from 'react-native';
+import { NativeEventEmitter } from 'react-native';
 import { NativeModules } from 'react-native';
 const { RNMistLibrary } = NativeModules;
 
@@ -175,10 +175,11 @@ var rpc = {
     }
 };
 
-DeviceEventEmitter.addListener('mist-rpc', (e) => {
-  console.log('mist-rpc in DeviceEventEmittier listener', typeof e, base64decode(e) instanceof Uint8Array );
+const mistEmitter = new NativeEventEmitter( RNMistLibrary );
 
-  console.log("e.length", e.length);
+mistEmitter.addListener('mist-rpc', (e) => {
+  console.log('mist-rpc in NativeEventEmitter listener', typeof e, e.length, base64decode(e) instanceof Uint8Array );
+
   receive(new Buffer(base64decode(e)));
 });
 
