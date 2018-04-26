@@ -2,7 +2,8 @@ import bson from './bson.js';
 import { Buffer } from 'buffer'
 import { NativeEventEmitter } from 'react-native';
 import { NativeModules } from 'react-native';
-const { RNMistLibrary } = NativeModules;
+//const { RNMistLibrary } = NativeModules;
+const { MistModule } = NativeModules;
 
 var BSON = bson().BSON;
 
@@ -77,14 +78,14 @@ var base64decode;
 })();
 
 function receive(data) {
-    console.log("receive:" , data);
+    console.log("receive:" , BSON.deserialize(data));
     rpc.response(BSON.deserialize(data));
 }
 
 function send(data) {
-  console.log("sending data", data, RNMistLibrary);
+  //console.log("sending data", data, MistModule);
   var msg = BSON.serialize(data);
-  RNMistLibrary.send(base64encode(msg));
+  MistModule.send(base64encode(msg));
 }
 
 var api = {
@@ -175,7 +176,7 @@ var rpc = {
     }
 };
 
-const mistEmitter = new NativeEventEmitter( RNMistLibrary );
+const mistEmitter = new NativeEventEmitter( MistModule );
 
 mistEmitter.addListener('mist-rpc', (e) => {
   console.log('mist-rpc in NativeEventEmitter listener', typeof e, e.length, base64decode(e) instanceof Uint8Array );

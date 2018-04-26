@@ -29,11 +29,13 @@ android {
 
 repositories {
     mavenCentral()
+
+    //flatDir { dirs "$rootDir/../node_modules/react-native-mist-library/android/MistApi" }
 }
 
 dependencies {
-    compile 'com.facebook.react:react-native:+'
-    implementation project(':Wish')
-    implementation project(':MistApi')
+    //implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.facebook.react:react-native:+'
 }
-  
+
+

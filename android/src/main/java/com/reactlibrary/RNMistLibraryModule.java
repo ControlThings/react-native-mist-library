@@ -13,12 +13,14 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
+/*
 import addon.AddonReceiver;
 import mist.api.Service;
 import mist.api.request.Sandbox;
 import mist.api.request.Sandboxed;
+*/
 
-public class RNMistLibraryModule extends ReactContextBaseJavaModule implements LifecycleEventListener, AddonReceiver.Receiver {
+public class RNMistLibraryModule extends ReactContextBaseJavaModule implements LifecycleEventListener { //, AddonReceiver.Receiver {
     private static String TAG = "RNMist";
 
     private final ReactApplicationContext reactContext;
@@ -34,12 +36,13 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
         reactContext.addLifecycleEventListener(this);
 
+        /*
         // TODO: Fix this temporary sandbox id
         sid[0] = 0x32;
 
         mistService = new Intent(reactContext, Service.class);
         //mistService.putExtra("name", "eWind_react_native");
-
+        */
     }
 
     @Override
@@ -50,12 +53,13 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
     @Override
     public void onHostResume() {
         Log.d(TAG, "onHostResume");
-
+        /*
         AddonReceiver mistReceiver = new AddonReceiver(this);
 
         mistService.putExtra("receiver", mistReceiver);
 
         getReactApplicationContext().startService(mistService);
+        */
     }
 
     @Override
@@ -69,6 +73,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     }
 
+    /*
     @Override
     public void onConnected() {
         Log.d(TAG, "onConnected (to service?)");
@@ -87,13 +92,13 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
             @Override
             public void end() {}
         });
-
     }
 
     @Override
     public void onDisconnected() {
         Log.d(TAG, "onDisconnected (to service?)");
     }
+    */
 
     /**
      * Emit event to ReactNative
@@ -116,6 +121,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
         //WishApp.getInstance().bsonConsolePrettyPrinter("bson from ui", args);
 
+        /*
         Sandboxed.request(sid, args, new Sandboxed.SandboxedCb() {
             @Override
             public void cb(byte[] bson) {
@@ -124,7 +130,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
                 emit(getReactApplicationContext(), "mist-rpc", base64String);
             }
         });
-
+        */
     }
 
 }
