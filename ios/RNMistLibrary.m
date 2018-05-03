@@ -26,7 +26,7 @@ Sandbox *sandbox;
     NSData* sandboxId = [[NSData alloc] initWithBytes:sandbox_id length:sandbox_id_len];
     sandbox = [[Sandbox alloc] initWithSandboxId:sandboxId callback:^(NSData *responseData) {
         NSString *base64Encoded = [responseData base64EncodedStringWithOptions:0];
-        NSLog(@"mist-rpc sandbox callback with response len=%lu", responseData.length);
+        //NSLog(@"mist-rpc sandbox callback with response len=%lu", responseData.length);
         //
         [self sendEventWithName:@"mist-rpc" body:base64Encoded];
     }];
@@ -56,7 +56,7 @@ RCT_EXPORT_METHOD(send:(NSString *)base64Data)
     }
     
     NSData *unmarshalled = [[NSData alloc] initWithBase64EncodedString:base64Data options:0];
-    RCTLogInfo(@"mist-rpc send, with data len=%lu", unmarshalled.length);
+    //RCTLogInfo(@"mist-rpc send, with data len=%lu", unmarshalled.length);
 
 
     [sandbox requestWithData:unmarshalled];
