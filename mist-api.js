@@ -1,9 +1,22 @@
 import bson from './bson.js';
 import { Buffer } from 'buffer'
 import { NativeEventEmitter } from 'react-native';
-import { NativeModules } from 'react-native';
-//const { RNMistLibrary } = NativeModules;
-const { MistModule } = NativeModules;
+import { NativeModules, Platform } from 'react-native';
+
+// TODO: fix issue on Android so we can use the name RNMistLibrary on both platforms.
+var lib;
+if (Platform.OS === 'ios') {
+    console.log("here1");
+    const { RNMistLibrary } = NativeModules;
+    lib = RNMistLibrary;
+}
+else {
+    console.log("here2");
+    const { MistModule } = NativeModules;
+    lib = MistModule;
+}
+
+var MistModule = lib;
 
 var BSON = bson().BSON;
 
