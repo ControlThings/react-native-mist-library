@@ -2103,7 +2103,6 @@ var bson = (function(){
     // Options
 
     var size2 = buffer[0] | buffer[1] << 8 | buffer[2] << 16 | buffer[3] << 24;
-console.log("buffer size ", size2);
 
     options = options == null ? {} : options;
     var evalFunctions = options['evalFunctions'] == null ? false : options['evalFunctions'];

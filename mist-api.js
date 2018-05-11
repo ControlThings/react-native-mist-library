@@ -78,7 +78,7 @@ var base64decode;
 })();
 
 function receive(data) {
-    console.log("receive:" , BSON.deserialize(data));
+    //console.log("receive:" , BSON.deserialize(data));
     rpc.response(BSON.deserialize(data));
 }
 
@@ -112,6 +112,7 @@ var rpc = {
     reqs: {},
     // make a rpc request
     request: function(op, args, cb) {
+        if(!cb) { cb = (err, data) => { console.log(rpc.id, op, 'cb:', err, data); rpc.result = data; } }
         rpc.reqs[rpc.id] = cb;
         send({ op: op, args: args, id: rpc.id });
         //setTimeout((function(id) { return function() { if (typeof rpc.reqs[id] === 'function') { console.log('request', op, 'timed out.'); rpc.reqs[id]({ timeout: true }); delete rpc.reqs[id]; } }; })(rpc.id), 2000);
@@ -179,10 +180,32 @@ var rpc = {
 const mistEmitter = new NativeEventEmitter( MistModule );
 
 mistEmitter.addListener('mist-rpc', (e) => {
-  console.log('mist-rpc in NativeEventEmitter listener', typeof e, e.length, base64decode(e) instanceof Uint8Array );
+  //console.log('mist-rpc in NativeEventEmitter listener', typeof e, e.length, base64decode(e) instanceof Uint8Array );
 
   receive(new Buffer(base64decode(e)));
 });
+
+rpc.methods(() => {
+    console.log('Methods done.');
+});
+
+function listPeers() {
+    rpc.request('listPeers', [], (err, data) => {
+        window.peers = data;
+    });
+}
+
+listPeers();
+
+rpc.request('signals', [], (err, data) => {
+    console.log('mist.signal:', err, data[0], data);
+
+    if (data[0] === 'peers') {
+        listPeers();
+    }
+});
+
+window.mist = rpc;
 
 module.exports = {
   mist: rpc
