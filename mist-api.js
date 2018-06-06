@@ -6,12 +6,9 @@ import { NativeModules, Platform } from 'react-native';
 // TODO: fix issue on Android so we can use the name RNMistLibrary on both platforms.
 var lib;
 if (Platform.OS === 'ios') {
-    console.log("here1");
     const { RNMistLibrary } = NativeModules;
     lib = RNMistLibrary;
-}
-else {
-    console.log("here2");
+} else {
     const { MistModule } = NativeModules;
     lib = MistModule;
 }
@@ -154,7 +151,7 @@ var rpc = {
         rpc.request('methods', [], function(err, data) {
             for (var i in data) {
                 var path = i.split('.');
-                var node = api;
+                var node = rpc;
                 while (path.length>1) {
                     if (!node[path[0]]) {
                         node[path[0]] = {};
@@ -169,7 +166,7 @@ var rpc = {
                         var cb = arguments[arguments.length-1];
 
                         if ( typeof cb !== 'function') { 
-                            cb = function(err, data) { console.log(i+'('+reqId+'):', err, data); }; 
+                            cb = function(err, data) { console.log(i+'('+reqId+'):', err, data); rpc.result = data; rpc.err = err; }; 
                             for (var j=0; j < arguments.length; j++) {
                                 args.push(arguments[j]);
                             }

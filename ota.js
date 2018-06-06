@@ -7,26 +7,34 @@ import mist from './index.js';
 // var image_hash = crypto.createHash('sha256').update(image_data).digest();
 
 export class OtaUpdater {
-    otaUpdate(peer, image) {
+    canceled: bool = false;
+
+    otaUpdate(peer, image, cb) {
         console.log("Commencing OTA update with", peer.name);
+        var self = this;
         var hash = image.hash;
         var image_data = image.data;
         var image_size = image.data.length;
+        var timeout;
+        self.canceled = false;
+
+        if (typeof cb !== "function") { cb = () => {} }
         
         console.log("image.bin length is ", image_size);
         
-        var ota_next = function(offset, num_bytes) {   
-            console.log("Uploading at offset", offset, "num bytes", num_bytes, "("+ Number.parseFloat(offset/image_size*100).toFixed(2)+"%)");
+        var ota_next = function(offset, num_bytes) {
+            if (self.canceled) { clearTimeout(timeout); cb(0); return; }
+
+            const progress = Number.parseFloat(offset/image_size*100).toFixed(2);
+
+            cb(progress);
+
+            console.log("Uploading at offset", offset, "num bytes", num_bytes, "("+ progress +"%)");
             mist.request('mist.control.invoke', [peer, 'ota', { op: "ota_push", hash: hash, offset: offset, data: image_data.slice(offset, offset + num_bytes)} ], ota_callback);
-            if (typeof global_timer === 'undefined') {
-                global_timer = setTimeout(invokeTimeout, 10*1000);
-                
-            }
-            else {
-                clearTimeout(global_timer);
-                global_timer = setTimeout(invokeTimeout, 10*1000);;
-            }
-            
+
+            clearTimeout(timeout);
+
+            timeout = setTimeout(invokeTimeout, 10*1000);;
         }
         
         var ota_callback = function (err, data) {
@@ -51,7 +59,7 @@ export class OtaUpdater {
                                 console.log(err);
                             } 
                             console.log(data); 
-                            clearTimeout(global_timer);
+                            clearTimeout(timeout);
                         });
                 }, 10000);
             }
@@ -62,11 +70,16 @@ export class OtaUpdater {
         
         function invokeTimeout() {
             console.log("invoke timeout!");
+            cb(0);
             mist.request('mist.control.invoke', [peer, 'ota', { op: "ota_resync", hash: hash }], ota_callback);
         }
         
         
         mist.request('mist.control.invoke', [peer, 'ota', { op: "ota_begin", hash: hash, size: image_size } ], ota_callback);
+    }
+
+    cancel() {
+        this.canceled = true;
     }
     
 }
