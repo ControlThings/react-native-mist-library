@@ -5,9 +5,21 @@
 
 `$ npm install react-native-mist-library --save`
 
+Actually, we hve used yarn with RN apps.
+
 ### Mostly automatic installation
 
 `$ react-native link react-native-mist-library`
+
+## Mist Api dependency
+
+### iOS 
+
+On iOS, the library is dependent on the libMistApi.a which is produced by the MistApi Xcode project. A pre-compiled binary is included in ios/lib. See README.md in MistApi for instructions on how to update libMistApi.a.
+
+### Android
+
+In order for the rn mist-library to work under Android, you must include the Wish and MistApi aar libraries to the rn app project.
 
 ### Manual installation
 
