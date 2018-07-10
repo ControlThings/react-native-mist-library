@@ -28,14 +28,23 @@ android {
 }
 
 repositories {
+    maven {
+        url "http://foremost.cto.fi:8081/artifactory/libs-release-local"
+        credentials {
+            username = "${artifactory_username}"
+            password = "${artifactory_password}"
+        }
+    }
     mavenCentral()
-
     //flatDir { dirs "$rootDir/../node_modules/react-native-mist-library/android/MistApi" }
+    google()
 }
 
 dependencies {
     //implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.facebook.react:react-native:+'
+    implementation 'fi.ct.mist:MistApi:0.4.0'
+    //implementation 'fi.ct.wish:WishApp:0.4.0'
 }
 
 
