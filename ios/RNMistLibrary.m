@@ -4,6 +4,7 @@
 
 #import "MistPort.h"
 #import "Sandbox.h"
+#import "PassthroughRequest.h"
 
 Sandbox *sandbox;
 
@@ -28,10 +29,19 @@ Sandbox *sandbox;
         NSString *base64Encoded = [responseData base64EncodedStringWithOptions:0];
         //NSLog(@"mist-rpc sandbox callback with response len=%lu", responseData.length);
         //
-        [self sendEventWithName:@"mist-rpc" body:base64Encoded];
+        [self sendEventWithName:@"sandboxed" body:base64Encoded];
     }];
     self.hasLogined = NO;
     
+    [PassthroughRequest setMistApiCallback:^(NSData *responseData) {
+        NSString *base64Encoded = [responseData base64EncodedStringWithOptions:0];
+        [self sendEventWithName:@"mistApi" body:base64Encoded];
+    }];
+    
+    [PassthroughRequest setWishApiCallback:^(NSData *responseData) {
+        NSString *base64Encoded = [responseData base64EncodedStringWithOptions:0];
+        [self sendEventWithName:@"wishApp" body:base64Encoded];
+    }];
     
     return self;
 }
@@ -45,10 +55,10 @@ RCT_EXPORT_MODULE();
 
 - (NSArray<NSString *> *)supportedEvents
 {
-    return @[@"mist-rpc"];
+    return @[@"sandboxed", @"mistApi", @"wishApp"];
 }
 
-RCT_EXPORT_METHOD(send:(NSString *)base64Data)
+RCT_EXPORT_METHOD(sandboxed:(NSString *)base64Data)
 {
     if (self.hasLogined == NO) {
         [sandbox login];
@@ -63,6 +73,28 @@ RCT_EXPORT_METHOD(send:(NSString *)base64Data)
     
 }
 
+RCT_EXPORT_METHOD(mistApi:(NSString *)base64Data)
+{
+    if (self.hasLogined == NO) {
+        [sandbox login];
+        self.hasLogined = YES;
+    }
+    
+    NSData *unmarshalled = [[NSData alloc] initWithBase64EncodedString:base64Data options:0];
+    //RCTLogInfo(@"mist-rpc send, with data len=%lu", unmarshalled.length);
+    
+    
+    [PassthroughRequest mistApiRequestWithData:unmarshalled];
+    
+}
+
+RCT_EXPORT_METHOD(wishApp:(NSString *)base64Data)
+{
+    NSData *unmarshalled = [[NSData alloc] initWithBase64EncodedString:base64Data options:0];
+    //RCTLogInfo(@"mist-rpc send, with data len=%lu", unmarshalled.length);
+    
+    [PassthroughRequest wishApiRequestWithData:unmarshalled];
+}
 
 @end
   
