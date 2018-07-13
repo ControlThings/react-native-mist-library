@@ -9,8 +9,8 @@ if (Platform.OS === 'ios') {
     const { RNMistLibrary } = NativeModules;
     lib = RNMistLibrary;
 } else {
-    const { MistModule } = NativeModules;
-    lib = MistModule;
+    const { RNMistLibrary } = NativeModules;
+    lib = RNMistLibrary;
 }
 
 var MistModule = lib;
@@ -88,7 +88,7 @@ var base64decode;
 })();
 
 function receive(data) {
-    console.log("receive:" , BSON.deserialize(data));
+    // console.log("receive:" , BSON.deserialize(data));
     rpc.response(BSON.deserialize(data));
 }
 
@@ -196,7 +196,7 @@ mistEmitter.addListener('wishApp', (e) => {
 });
 
 rpc.methods(() => {
-    console.log('Methods done.');
+    // console.log('Methods done.');
 });
 
 window.WishApp = rpc;

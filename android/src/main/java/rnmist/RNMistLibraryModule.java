@@ -1,5 +1,5 @@
 
-package com.reactlibrary;
+package rnmist;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import addon.AddonReceiver;
-import mist.api.MistApi;
 import mist.api.Service;
 import mist.api.request.Commission;
 import mist.api.request.Sandbox;
@@ -56,7 +55,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @Override
     public String getName() {
-        return "RNMistLibraryModule";
+        return "RNMistLibrary";
     }
 
     private boolean mistRunning;
@@ -161,7 +160,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void tempStorageGet(Promise promise) {
-        Log.d(TAG, "tempStorageGet()");
+        //Log.d(TAG, "tempStorageGet()");
         try {
             InputStreamReader in = new InputStreamReader(getReactApplicationContext().openFileInput(FILENAME));
             BufferedReader bf = new BufferedReader(in);
@@ -171,7 +170,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
                 sb.append(jsonString);
             }
             in.close();
-            Log.d(TAG, "tempStorageGet() returns " + sb.toString());
+            //Log.d(TAG, "tempStorageGet() returns " + sb.toString());
             promise.resolve(sb.toString());
 
         } catch (FileNotFoundException fErr) {
@@ -187,7 +186,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void tempStorageSet(String jsonString, Promise promise) {
-        Log.d(TAG, "tempStorageSet()" + jsonString);
+        //Log.d(TAG, "tempStorageSet()" + jsonString);
         try {
             FileOutputStream fos = getReactApplicationContext().openFileOutput(FILENAME, getReactApplicationContext().MODE_PRIVATE);
             fos.write(jsonString.getBytes());
@@ -215,7 +214,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void sandboxed(String message) {
-        Log.d(TAG, "send msg: " + message);
+        //Log.d(TAG, "send msg: " + message);
 
         byte[] args = Base64.decode(message, Base64.DEFAULT);
 
@@ -224,7 +223,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
         Sandboxed.request(sid, args, new Sandboxed.SandboxedCb() {
             @Override
             public void cb(byte[] bson) {
-                Log.d(TAG, "sandbox.request cb");
+                //Log.d(TAG, "sandbox.request cb");
                 final String base64String = Base64.encodeToString(bson, Base64.NO_WRAP);
                 emit(getReactApplicationContext(), "sandboxed", base64String);
             }
@@ -233,7 +232,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void wishApp(String message) {
-        Log.d(TAG, "send msg: " + message);
+        //Log.d(TAG, "send msg: " + message);
 
         byte[] args = Base64.decode(message, Base64.DEFAULT);
 
@@ -242,7 +241,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
         wish.request.RawRequest.request(args, new wish.request.RawRequest.RawRequestCb() {
             @Override
             public void cb(byte[] bson) {
-                Log.d(TAG, "sandbox.request cb");
+                //Log.d(TAG, "sandbox.request cb");
                 final String base64String = Base64.encodeToString(bson, Base64.NO_WRAP);
                 emit(getReactApplicationContext(), "wishApp", base64String);
             }
@@ -252,7 +251,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void mistApi(String message) {
-        Log.d(TAG, "send msg: " + message);
+        //Log.d(TAG, "send msg: " + message);
 
         byte[] args = Base64.decode(message, Base64.DEFAULT);
 
@@ -261,7 +260,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
         mist.api.request.RawRequest.request(args, new mist.api.request.RawRequest.RawRequestCb() {
             @Override
             public void cb(byte[] bson) {
-                Log.d(TAG, "sandbox.request cb");
+                //Log.d(TAG, "sandbox.request cb");
                 final String base64String = Base64.encodeToString(bson, Base64.NO_WRAP);
                 emit(getReactApplicationContext(), "mistApi", base64String);
             }

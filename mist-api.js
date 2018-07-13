@@ -9,8 +9,8 @@ if (Platform.OS === 'ios') {
     const { RNMistLibrary } = NativeModules;
     lib = RNMistLibrary;
 } else {
-    const { MistModule } = NativeModules;
-    lib = MistModule;
+    const { RNMistLibrary } = NativeModules;
+    lib = RNMistLibrary;
 }
 
 var MistModule = lib;
@@ -196,7 +196,7 @@ mistEmitter.addListener('sandboxed', (e) => {
 });
 
 rpc.methods(() => {
-    console.log('Methods done.');
+    // console.log('Methods done.');
 });
 
 function listPeers() {
@@ -208,7 +208,7 @@ function listPeers() {
 listPeers();
 
 rpc.request('signals', [], (err, data) => {
-    console.log('mist.signal:', err, data[0], data);
+    // console.log('mist.signal:', err, data[0], data);
 
     if (data[0] === 'peers') {
         listPeers();
