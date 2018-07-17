@@ -36,15 +36,12 @@ repositories {
         }
     }
     mavenCentral()
-    //flatDir { dirs "$rootDir/../node_modules/react-native-mist-library/android/MistApi" }
     google()
 }
 
 dependencies {
-    //implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.facebook.react:react-native:+'
     implementation 'fi.ct.mist:MistApi:0.4.2'
-    //implementation 'fi.ct.wish:WishApp:0.4.0'
 }
 
 

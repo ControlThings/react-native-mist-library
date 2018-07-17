@@ -218,7 +218,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
         byte[] args = Base64.decode(message, Base64.DEFAULT);
 
-        WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
+        // WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
 
         Sandboxed.request(sid, args, new Sandboxed.SandboxedCb() {
             @Override
@@ -236,7 +236,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
         byte[] args = Base64.decode(message, Base64.DEFAULT);
 
-        WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
+        // WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
 
         wish.request.RawRequest.request(args, new wish.request.RawRequest.RawRequestCb() {
             @Override
@@ -255,7 +255,7 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
         byte[] args = Base64.decode(message, Base64.DEFAULT);
 
-        WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
+        // WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
 
         mist.api.request.RawRequest.request(args, new mist.api.request.RawRequest.RawRequestCb() {
             @Override
