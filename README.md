@@ -19,7 +19,29 @@ On iOS, the library is dependent on the libMistApi.a which is produced by the Mi
 
 ### Android
 
-In order for the rn mist-library to work under Android, you must include the Wish and MistApi aar libraries to the rn app project.
+MistLibrary's dependencies are automatically downloaded from a maven repository called Artifactory running at foremost.cto.fi.
+
+#### Updating WishCore and MistApi under development
+
+When developing MistApi or WishCore you can update to newest versions via artifactory:
+
+MistApi (publish updates):
+
+```sh
+.../mist-api-android $ ./gradlew --refresh-dependencies build assembleRelease artifactoryPublish
+```
+
+WishCore (publish update):
+
+```sh
+.../Wish $ ./gradlew build assembleRelease artifactoryPublish
+```
+
+MistLibrary (refresh dependencies, i.e. MistApi and WishCore)
+
+```sh
+.../MistLibrary/android $ ./gradlew --refresh-dependencies -x:lint build
+```
 
 ### Manual installation
 
