@@ -21,6 +21,24 @@ On iOS, the library is dependent on the libMistApi.a which is produced by the Mi
 
 MistLibrary's dependencies are automatically downloaded from a maven repository called Artifactory running at foremost.cto.fi.
 
+Required: Gradle configuration of Artifactory:
+
+1. Log in to Artifactory http://foremost.controlthings.fi:8081
+2. In the "Welcome, yourUserName" menu on the top right of the screen, find
+   "Edit profile".
+3. Write your password on the top of page to unlock...
+4. Under Authentication settings you can click on the "eye" icon to see
+   the Encrypted password
+5. On your computer, create file: `~/.gradle/gradle.properties` and add
+   the following:
+
+    artifactory_username=<your Artifactory user name>
+    artifactory_password=<your Encrypted Artifactory password>
+
+#### Old information
+In order for the rn mist-library to work under Android, you must include the Wish and MistApi aar libraries to the rn app project.
+
+
 #### Updating WishCore and MistApi under development
 
 When developing MistApi or WishCore you can update to newest versions via artifactory:
