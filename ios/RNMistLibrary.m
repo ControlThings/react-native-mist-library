@@ -96,5 +96,45 @@ RCT_EXPORT_METHOD(wishApp:(NSString *)base64Data)
     [PassthroughRequest wishApiRequestWithData:unmarshalled];
 }
 
+#define TEMP_STORAGE_FILENAME @"temp_storage.txt"
+
+RCT_EXPORT_METHOD(tempStorageGet: (RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+    RCTLogInfo(@"Actually reading file");
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:TEMP_STORAGE_FILENAME];
+    NSString *str = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+    
+    if (str == nil) {
+        resolve(@"null");
+    }
+    else {
+        resolve(str);
+    }
+}
+
+RCT_EXPORT_METHOD(tempStorageSet:(NSString*) data
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+    RCTLogInfo(@"Actually writing file");
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:TEMP_STORAGE_FILENAME];
+    
+    [data writeToFile:filePath atomically:TRUE encoding:NSUTF8StringEncoding error:NULL];
+    
+    resolve(@"true");
+}
+
+RCT_EXPORT_METHOD(getIdentities){
+    RCTLogInfo(@"getIdentities not implemented");
+}
+
+
 @end
   
