@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 // BSON parser
 // https://github.com/mongodb/js-bson/blob/0.5/browser_build/bson.js
 // Apache License Version 2.0, January 2004 http://www.apache.org/licenses/
