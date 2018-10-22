@@ -1,5 +1,5 @@
 import bson from './bson.js';
-import { Buffer } from 'buffer'
+import { Buffer } from 'buffer';
 import { NativeEventEmitter } from 'react-native';
 import { NativeModules, Platform } from 'react-native';
 

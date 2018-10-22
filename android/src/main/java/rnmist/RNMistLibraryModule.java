@@ -2,7 +2,10 @@
 package rnmist;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.util.Log;
 
@@ -13,8 +16,10 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+import android.support.v4.content.FileProvider;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -214,11 +219,11 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void sandboxed(String message) {
-        //Log.d(TAG, "send msg: " + message);
+        Log.d(TAG, "sendbox msg: " + message);
 
         byte[] args = Base64.decode(message, Base64.DEFAULT);
 
-        // WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
+         WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
 
         Sandboxed.request(sid, args, new Sandboxed.SandboxedCb() {
             @Override
@@ -232,11 +237,11 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void wishApp(String message) {
-        //Log.d(TAG, "send msg: " + message);
+        Log.d(TAG, "wish msg: " + message);
 
         byte[] args = Base64.decode(message, Base64.DEFAULT);
 
-        // WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
+         WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
 
         wish.request.RawRequest.request(args, new wish.request.RawRequest.RawRequestCb() {
             @Override
@@ -251,11 +256,11 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void mistApi(String message) {
-        //Log.d(TAG, "send msg: " + message);
+        Log.d(TAG, "mist msg: " + message);
 
         byte[] args = Base64.decode(message, Base64.DEFAULT);
 
-        // WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
+         WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
 
         mist.api.request.RawRequest.request(args, new mist.api.request.RawRequest.RawRequestCb() {
             @Override
@@ -266,4 +271,21 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
             }
         });
     }
+
+    @ReactMethod
+    public void share(String contact, String alias, String shareMsg) {
+
+        Template template = new Template();
+        ShareFile shareFile = new ShareFile(getReactApplicationContext());
+
+        File file = shareFile.createHtmlFile(template.getTemplate(contact, alias));
+
+        shareFile.setShareMsg(shareMsg);
+
+        if (file == null) {
+            return;
+        }
+        shareFile.share(file);
+    }
+
 }
