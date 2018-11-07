@@ -219,16 +219,15 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void sandboxed(String message) {
-        Log.d(TAG, "sendbox msg: " + message);
-
+        //Log.d(TAG, "sendbox msg: " + message);
         byte[] args = Base64.decode(message, Base64.DEFAULT);
-
-         WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
+        //WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
 
         Sandboxed.request(sid, args, new Sandboxed.SandboxedCb() {
             @Override
             public void cb(byte[] bson) {
                 //Log.d(TAG, "sandbox.request cb");
+                //WishApp.getInstance().bsonConsolePrettyPrinter(TAG+"_CB", bson);
                 final String base64String = Base64.encodeToString(bson, Base64.NO_WRAP);
                 emit(getReactApplicationContext(), "sandboxed", base64String);
             }
@@ -237,16 +236,15 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void wishApp(String message) {
-        Log.d(TAG, "wish msg: " + message);
-
+        //Log.d(TAG, "wish msg: " + message);
         byte[] args = Base64.decode(message, Base64.DEFAULT);
-
-         WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
+        //WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
 
         wish.request.RawRequest.request(args, new wish.request.RawRequest.RawRequestCb() {
             @Override
             public void cb(byte[] bson) {
-                //Log.d(TAG, "sandbox.request cb");
+                //Log.d(TAG, "wish.request cb");
+                //WishApp.getInstance().bsonConsolePrettyPrinter(TAG+"_CB", bson);
                 final String base64String = Base64.encodeToString(bson, Base64.NO_WRAP);
                 emit(getReactApplicationContext(), "wishApp", base64String);
             }
@@ -256,16 +254,15 @@ public class RNMistLibraryModule extends ReactContextBaseJavaModule implements L
 
     @ReactMethod
     public void mistApi(String message) {
-        Log.d(TAG, "mist msg: " + message);
-
+        //Log.d(TAG, "mist msg: " + message);
         byte[] args = Base64.decode(message, Base64.DEFAULT);
-
-         WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
+        //WishApp.getInstance().bsonConsolePrettyPrinter(TAG, args);
 
         mist.api.request.RawRequest.request(args, new mist.api.request.RawRequest.RawRequestCb() {
             @Override
             public void cb(byte[] bson) {
-                //Log.d(TAG, "sandbox.request cb");
+                //Log.d(TAG, "mist.request cb");
+                //WishApp.getInstance().bsonConsolePrettyPrinter(TAG+"_CB", bson);
                 final String base64String = Base64.encodeToString(bson, Base64.NO_WRAP);
                 emit(getReactApplicationContext(), "mistApi", base64String);
             }
