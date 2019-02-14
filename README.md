@@ -1,7 +1,17 @@
 
 # react-native-mist-library
 
-## Getting started
+## Release instructions for new lib versions
+
+Once you have made your changes, you make a release like this:
+
+```sh
+npm version patch
+npm pack
+```
+Then copy the react-native-mist-library tgz to web site for distribution
+
+## Getting started with react-native-mist-library in a new project
 
 `$ npm install react-native-mist-library --save`
 
