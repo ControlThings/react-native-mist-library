@@ -20,7 +20,19 @@ Once you have made your changes, you make a release like this:
 npm version patch
 npm pack
 ```
-Then copy the react-native-mist-library tgz to web site for distribution
+
+Then deploy react-native-mist-library tgz for distribution
+
+## Deploy for distribution via Artifactory
+
+There is a deploy script in `tools/artifactoryDeploy.sh`.
+
+The deploy script reads Gradle's properties file to get the user's
+Artifactory credentials.
+
+You can get your credentials by logging in to Artifactory, and under
+"Edit profile" you will find "Encrypted password".
+
 
 ## Getting started with react-native-mist-library in a new project
 
