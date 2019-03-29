@@ -1,7 +1,7 @@
 {
   "name": "react-native-mist-library",
   "version": "1.0.19",
-  "description": "",
+  "description": "The React Native Mist Library allows React Native applications on iOS and Android to use the Mist framework for building secure distributed IoT applications.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,8 +9,12 @@
   "keywords": [
     "react-native"
   ],
-  "author": "",
-  "license": "",
+  "contributors": [ 
+    "André Kaustell <andre.kaustell@controlthings.fi>", 
+    "Jan Nyman <jan.nyman@controlthings.fi>", 
+    "Jesper Lökfors <jesper.lokfors@controlthings.fi>"
+  ],
+  "license": "Proprietary software, usage requires a license from ControlThings Oy Ab",
   "peerDependencies": {
     "react-native": "^0.51.0"
   },

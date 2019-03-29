@@ -1,6 +1,17 @@
 
 # react-native-mist-library
 
+## Introduction
+
+The React Native Mist Library allows React Native applications on
+iOS and Android to use the Mist framework for building secure distributed
+IoT applications.
+
+## License
+
+This library is proprietary software. Usage of react-native-mist-library 
+requires a license from ControlThings Oy Ab, https://controlthings.fi/
+
 ## Release instructions for new lib versions
 
 Once you have made your changes, you make a release like this:
