@@ -15,9 +15,6 @@
     "Jesper Lökfors <jesper.lokfors@controlthings.fi>"
   ],
   "license": "Proprietary software, usage requires a license from ControlThings Oy Ab",
-  "peerDependencies": {
-    "react-native": "^0.51.0"
-  },
   "dependencies": {
     "buffer": "^5.1.0"
   }

@@ -6,25 +6,25 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.android.tools.build:gradle:3.4.0'
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
     lintOptions {
         abortOnError false
     }
-    buildToolsVersion = '27.0.3'
+    buildToolsVersion = '28.0.3'
 }
 
 repositories {
@@ -41,7 +41,7 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'fi.ct.mist:MistApi:0.8.2'
+    implementation 'fi.ct.mist:MistApi:0.8.3'
 }
 
 
