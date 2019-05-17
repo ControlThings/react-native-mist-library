@@ -21,7 +21,7 @@ ARTIFACTORY_PASSWD=`awk '{ split($1, elems, "="); if (elems[1] == "artifactory_p
 
 echo $ARTIFACTORY_USER $ARTIFACTORY_PASSWD
 
-curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASSWD -T $PACKAGE
+curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASSWD -T $PACKAGE \
 "http://foremost.controlthings.fi:8081/artifactory/generic-local/react-native-mist-library/$PACKAGE"
 
 
