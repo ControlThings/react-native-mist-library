@@ -7,8 +7,10 @@ var bson = (function(){
 
     var pkgmap        = {},
         global        = {},
+        ties             = {},
+        aliases          = {},
         nativeRequire = typeof require != 'undefined' && require,
-        lib, ties, main, async;
+        lib, main, async;
   
     function exports(){ return main(); };
   
@@ -19,12 +21,6 @@ var bson = (function(){
     exports.require  = function require(uri){
       return pkgmap.main.index.require(uri);
     };
-  
-  
-    ties             = {};
-  
-    aliases          = {};
-  
   
     return exports;
   
