@@ -41,7 +41,7 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'fi.ct.mist:MistApi:0.8.8'
+    implementation 'fi.ct.mist:MistApi:0.8.9'
 }
 
 
