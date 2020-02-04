@@ -9,8 +9,8 @@ IoT applications.
 
 ## License
 
-This library is proprietary software. Usage of react-native-mist-library 
-requires a license from ControlThings Oy Ab, https://controlthings.fi/
+react-native-mist-library is released by ControlThings Oy Ab under the Apache 2.0 license. Copyright (C) 2020, ControlThings Oy Ab.
+
 
 ## Release instructions for new lib versions
 
