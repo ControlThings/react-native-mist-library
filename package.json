@@ -14,7 +14,7 @@
     "Jan Nyman <jan.nyman@controlthings.fi>",
     "Jesper Lökfors <jesper.lokfors@controlthings.fi>"
   ],
-  "license": "Proprietary software, usage requires a license from ControlThings Oy Ab",
+  "license": "Apache 2.0",
   "dependencies": {
     "buffer": "^5.1.0"
   }
