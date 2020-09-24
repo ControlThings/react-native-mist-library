@@ -13,10 +13,9 @@
 package rnmist;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
+
+import androidx.annotation.Nullable;
+
 import android.util.Base64;
 import android.util.Log;
 
@@ -27,7 +26,7 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,7 +40,6 @@ import mist.api.Service;
 import mist.api.request.Commission;
 import mist.api.request.Sandbox;
 import mist.api.request.Sandboxed;
-import wish.WishApp;
 import wish.request.Connection;
 
 public class RNMistLibraryModule extends ReactContextBaseJavaModule implements LifecycleEventListener, AddonReceiver.Receiver {
