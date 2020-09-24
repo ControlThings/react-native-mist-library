@@ -1,7 +1,11 @@
 {
-  "name": "react-native-mist-library",
+  "name": "@ControlThings/react-native-mist-library",
   "version": "1.0.28",
   "description": "The React Native Mist Library allows React Native applications on iOS and Android to use the Mist framework for building secure distributed IoT applications.",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": "git://github.com/ControlThings/react-native-mist-library.git",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
