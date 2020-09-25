@@ -9,7 +9,7 @@
  *
  * @license Apache-2.0
  */
-package rnmist;
+package fi.controlthings.rnmist;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;

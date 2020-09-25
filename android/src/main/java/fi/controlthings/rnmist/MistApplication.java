@@ -9,7 +9,7 @@
  *
  * @license Apache-2.0
  */
-package rnmist;
+package fi.controlthings.rnmist;
 
 public interface MistApplication {
 

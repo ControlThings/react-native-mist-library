@@ -9,9 +9,7 @@
  *
  * @license Apache-2.0
  */
-package rnmist;
-
-import android.util.Log;
+package fi.controlthings.rnmist;
 
 public class Template {
 

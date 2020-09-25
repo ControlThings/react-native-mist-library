@@ -10,7 +10,7 @@
  * @license Apache-2.0
  */
 
-package rnmist;
+package fi.controlthings.rnmist;
 
 import android.content.Intent;
 
@@ -26,7 +26,6 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import androidx.core.content.FileProvider;
 
 import java.io.BufferedReader;
 import java.io.File;

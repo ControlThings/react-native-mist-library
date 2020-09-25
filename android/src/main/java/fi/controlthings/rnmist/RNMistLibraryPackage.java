@@ -10,7 +10,7 @@
  * @license Apache-2.0
  */
 
-package rnmist;
+package fi.controlthings.rnmist;
 
 import java.util.Arrays;
 import java.util.Collections;
