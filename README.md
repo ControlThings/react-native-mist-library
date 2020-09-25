@@ -11,6 +11,15 @@ IoT applications.
 
 react-native-mist-library is released by ControlThings Oy Ab under the Apache 2.0 license. Copyright (C) 2020, ControlThings Oy Ab.
 
+## NPM package distrubuted via GitHub Packages
+
+You need to get a github token so that you can get the package via GH packages.
+
+Put the token into your `.npmrc`
+
+```
+//npm.pkg.github.com/:_authToken=<your token here>
+```
 
 ## Release instructions for new lib versions
 
