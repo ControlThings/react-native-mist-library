@@ -1,6 +1,6 @@
 
 Pod::Spec.new do |s|
-  s.name         = "react-native-mist-library"
+  s.name         = "RNMistLibrary"
   s.version      = "2.0.0"
   s.summary      = "MistApi wrapper for react native."
   s.description  = <<-DESC
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/ControlThings/react-native-mist-library"
   s.license      = "Apache 2.0"
   s.author             = { "author" => "author@domain.cn" }
-  s.platform     = :ios, "11.0"
+  s.platform     = :ios, "10.0"
   s.source       = { :git => "https://github.com/ControlThings/react-native-mist-library", :tag => "2.0.0-release" }
   s.source_files  = "**/*.{h,m}"
   s.requires_arc = true
