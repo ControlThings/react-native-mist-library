@@ -32,7 +32,19 @@ npm pack
 
 Then deploy react-native-mist-library tgz for distribution
 
-## Deploy for distribution via Artifactory
+## Deploy for distribution via Github Packages
+
+```sh
+npm publish
+```
+
+Be sure to have correct token with permission "packages:write" in .npmrc
+
+```
+//npm.pkg.github.com/:_authToken=<your token here>
+```
+
+## Deploy for distribution via Artifactory (Old information)
 
 There is a deploy script in `tools/artifactoryDeploy.sh`.
 
