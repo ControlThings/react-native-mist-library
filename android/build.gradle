@@ -29,19 +29,18 @@ android {
 
 repositories {
     maven {
-        url "http://foremost.cto.fi:8081/artifactory/libs-release-local"
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/ControlThings/mist-api-android")
         credentials {
-            username = "${artifactory_username}"
-            password = "${artifactory_password}"
+            username = System.getenv("GPR_USER")
+            password = System.getenv("GPR_API_KEY")
         }
     }
-    mavenCentral()
-    google()
 }
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'fi.ct.mist:MistApi:0.8.9'
+    implementation 'fi.ct.mist:mistapi:0.8.10'
 }
 
 
