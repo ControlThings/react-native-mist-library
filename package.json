@@ -1,6 +1,6 @@
 {
   "name": "@ControlThings/react-native-mist-library",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "The React Native Mist Library allows React Native applications on iOS and Android to use the Mist framework for building secure distributed IoT applications.",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
